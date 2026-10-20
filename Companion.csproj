@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Companion</RootNamespace>
+    <AssemblyName>Companion</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Sprites are compiled into the exe and loaded via pack:// URIs -->
+    <Resource Include="Assets\*.png" />
+  </ItemGroup>
+
+</Project>

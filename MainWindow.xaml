@@ -1,0 +1,54 @@
+<Window x:Class="Companion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Companion"
+        Width="200" Height="270"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        SourceInitialized="Window_SourceInitialized"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Grid Background="Transparent">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="FollowItem" Header="Follow cursor"
+                          IsCheckable="True" IsChecked="True"
+                          Click="FollowItem_Click" />
+                <MenuItem Header="Celebrate (test)" Click="Celebrate_Click" />
+                <Separator />
+                <MenuItem Header="Quit" Click="Quit_Click" />
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+        <!-- Soft ground shadow under his feet (hidden during bust-only poses) -->
+        <Ellipse x:Name="Shadow" Width="110" Height="14" Fill="#33000000"
+                 VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                 Margin="0,0,0,6" />
+
+        <!--
+            The character sprite. Source/Height are set from code per pose.
+            RenderTransformOrigin 0.5,1 = anchored at his feet, so flipping and
+            squashing happen around the ground, not the middle of the picture.
+        -->
+        <Image x:Name="Sprite" Stretch="Uniform"
+               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               Margin="0,0,0,14"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               RenderTransformOrigin="0.5,1">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="Pose" ScaleX="1" ScaleY="1" />
+                    <RotateTransform x:Name="Lean" Angle="0" />
+                    <TranslateTransform x:Name="Shift" X="0" Y="0" />
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+    </Grid>
+</Window>
